@@ -52,32 +52,23 @@ document.addEventListener('click', function(event) {
     };
 
     if (target.classList.contains('interviewButton')) {
-        
         RejectedList = RejectedList.filter(item => item.id !== jobInfo.id);
-        
-       
         if (!InterviewList.find(item => item.id === jobInfo.id)) {
             InterviewList.push(jobInfo);
         }
-        
         updateCounters();
         refreshCurrentTab(); 
     }
 
     if (target.classList.contains('RejectedButton')) {
-       
         InterviewList = InterviewList.filter(item => item.id !== jobInfo.id);
-        
-        
         if (!RejectedList.find(item => item.id === jobInfo.id)) {
             RejectedList.push(jobInfo);
         }
-        
         updateCounters();
         refreshCurrentTab(); 
     }
 
-   
     if (target.closest('.deleteBtn')) {
         if (card.parentElement.id === 'all-card') {
             card.remove();
@@ -99,8 +90,16 @@ function refreshCurrentTab() {
 
 function renderFilteredData(list, statusText, colorClass) {
     filterSection.innerHTML = `<h2 class="text-xl font-bold mb-4">${statusText} Applications</h2>`;
+    
     if (list.length === 0) {
-        filterSection.innerHTML += `<p class="text-gray-400">No applications found.</p>`;
+        filterSection.innerHTML += `
+            <div class="flex flex-col items-center justify-center mt-20 pb-10">
+                <img src="./jobs.png" alt="No jobs" class="w-24 mb-4 opacity-50">
+                <h3 class="text-xl font-bold text-gray-700">No ${statusText} Jobs Available</h3>
+                <p class="text-gray-500 mt-2">
+                    ${statusText === 'Interview' ? "Keep working hard and don't give up hope! 😊" : "You haven't been rejected yet. Keep it up! 👍"}
+                </p>
+            </div>`;
         return;
     }
 
@@ -125,5 +124,6 @@ function renderFilteredData(list, statusText, colorClass) {
         filterSection.appendChild(div);
     });
 }
+
 
 updateCounters();
