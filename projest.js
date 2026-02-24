@@ -3,14 +3,18 @@ const interviewDisplay = document.getElementById('Interview');
 const rejectedDisplay = document.getElementById('Rejected');
 const allCardSection = document.getElementById('all-card');
 const filterSection = document.getElementById('filtered-section');
+const jobCountDisplay = document.getElementById('job-count'); // Reference to the new element
 
 let InterviewList = [];
 let RejectedList = [];
 
 function updateCounters() {
-    totalDisplay.innerText = allCardSection.children.length;
+    const totalJobs = allCardSection.children.length;
+    totalDisplay.innerText = totalJobs;
     interviewDisplay.innerText = InterviewList.length;
     rejectedDisplay.innerText = RejectedList.length;
+    // FIXED: Synchronize the job count indicator
+    jobCountDisplay.innerText = `${totalJobs} jobs`;
 }
 
 function toggleStyle(id) {
@@ -124,6 +128,5 @@ function renderFilteredData(list, statusText, colorClass) {
         filterSection.appendChild(div);
     });
 }
-
 
 updateCounters();

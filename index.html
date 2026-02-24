@@ -34,7 +34,11 @@
     <hr class="my-8 border-gray-200">
 
     <main id="main">
-        <h2 class="text-neutral font-bold text-[26px]">Available Jobs</h2>
+        <div class="flex justify-between items-end">
+            <h2 class="text-neutral font-bold text-[26px]">Available Jobs</h2>
+            <span id="job-count" class="text-gray-400 text-sm mb-1">0 jobs</span>
+        </div>
+
         <div class="flex gap-3 mb-8 mt-[20px]">
             <button id="all-btn" onclick="toggleStyle('all-btn')" class="bg-blue-600 text-white px-8 py-2.5 rounded-md font-semibold transition-all duration-300">All</button>
             <button id="Interview-btn" onclick="toggleStyle('Interview-btn')" class="border-2 border-gray-200 px-6 py-2.5 rounded-md text-[#64748B] font-semibold transition-all duration-300 hover:bg-gray-100">Interview</button>
